@@ -20,7 +20,10 @@
   "keywords": [
     "react-native"
   ],
-  "author": "Robbe.Luo <robbe.luo@gmail.com>",
+  "author": {
+    "name": "Robbe.Luo",
+    "email": "robbe.luo@gmail.com"
+  },
   "license": "MIT",
   "licenseFilename": "LICENSE",
   "readmeFilename": "README.md",
