@@ -21,7 +21,7 @@ jobs:
       # From now you can access the version
       - name: Print version
         if: ${{contains(steps.extract_version.outputs.version, 'beta') == true}}
-        run: npm version prerelease --preid=beta
+        run: sudo npm version prerelease --preid=beta
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Apply php-cs-fixer changes
