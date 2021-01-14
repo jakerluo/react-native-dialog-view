@@ -5,8 +5,8 @@ name: react-native-dialog-view beta Package
 
 on:
   create:
-    branches: 
-      - beta
+    tags: 
+      - v*
   
 jobs:
   publish-latest:
@@ -32,9 +32,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - name: echo github ref
+        run: echo "${{github.ref}}"
       - name: Exit if not on beta branch
         if: endsWith(github.ref, 'beta') == false
-        run: exit -1
+        run: exit
       - uses: actions/setup-node@v1
         with:
           node-version: 12
