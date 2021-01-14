@@ -19,7 +19,7 @@ jobs:
         uses: EndBug/version-check@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      - run: echo ${{steps.check.outputs}}
+      - run: echo ${{toJSON(steps.check.outputs)}}
         
       - name: should be publish package
         if: steps.check.outputs.changed == 'true'
