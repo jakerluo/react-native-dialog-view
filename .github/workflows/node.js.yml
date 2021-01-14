@@ -17,9 +17,12 @@ jobs:
       - name: Extract version
         id: extract_version
         uses: Saionaro/extract-package-version@v1.0.6
-      - run: echo ${{toJSON(steps.extract_version.outputs)}}
         
-      - uses: JS-DevTools/npm-publish@v1
+      - run: echo ${{contains(steps.extract_version.outputs.version, 'beta')}}
+        
+      - name: publish package
+        if: ${{contains(steps.extract_version.outputs.version, 'beta') == true}}
+        uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
           tag: beta
