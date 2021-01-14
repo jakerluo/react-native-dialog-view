@@ -13,17 +13,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: push
-        uses: actions-x/commit@v2
-      - name: Extract version
-        id: extract_version
-        uses: Saionaro/extract-package-version@v1.0.6
-#       # From now you can access the version
-#       - name: Print version
-#         if: ${{contains(steps.extract_version.outputs.version, 'beta') == true}}
-#         run: sudo npm version prerelease --preid=beta
+      - name: Check if version has been updated
+        id: check
+        uses: EndBug/version-check@v1
+      - name: Log when changed
+        if: steps.check.outputs.changed == 'true'
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          tag: beta
+      # From now you can access the version
+
+      - name: Log when changed
+        if: steps.check.outputs.changed == 'true'
+        run: 'echo "Version change found in commit ${{ steps.check.outputs.commit }}! New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
+
+      - name: Log when unchanged
+        if: steps.check.outputs.changed == 'false'
+        run: 'echo "No version change :/"'
+    
       
-      - name: version & publish
-        uses: geeman201/conventional-changelog-npm-publish/@v14
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
