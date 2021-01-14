@@ -14,10 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: echo github ref
-        run: echo "${{github.ref}}"
+        run: echo "${{github.ref}} ${{GITHUB_BASE_REF}}"
       - name: Exit if not on main branch
         if: endsWith(github.ref, 'main') == false
-        run: exit
+        run: exit -1
       - uses: actions/setup-node@v1
         with:
           node-version: 12
@@ -33,10 +33,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: echo github ref
-        run: echo "${{github.ref}}"
+        run: echo "${{GITHUB_BASE_REF}}"
       - name: Exit if not on beta branch
         if: endsWith(github.ref, 'beta') == false
-        run: exit
+        run: exit -1
       - uses: actions/setup-node@v1
         with:
           node-version: 12
