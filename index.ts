@@ -2,5 +2,5 @@ import { NativeModules } from "react-native";
 
 const { ReactNativeDialogView, ReactNativeProgress } = NativeModules;
 
-export { ReactNativeProgress, ReactNativeDialogView };
+export const DialogProgress = ReactNativeProgress;
 export default ReactNativeDialogView;
