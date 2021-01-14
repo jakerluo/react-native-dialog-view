@@ -1,7 +1,7 @@
 {
   "name": "react-native-dialog-view",
   "title": "React Native Dialog View",
-  "version": "0.1.5-beta.2",
+  "version": "0.1.5-beta.3",
   "description": "TODO",
   "main": "index.ts",
   "types": "index.d.ts",
