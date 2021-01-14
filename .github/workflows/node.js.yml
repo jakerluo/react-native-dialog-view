@@ -13,7 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      
+      - name: push
+        uses: actions-x/commit@v2
       - name: Extract version
         id: extract_version
         uses: Saionaro/extract-package-version@v1.0.6
