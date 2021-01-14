@@ -4,15 +4,17 @@
 name: react-native-dialog-view beta Package
 
 on:
-  create:
-    tags: 
-      - v*
+  push:
+    branches: 
+      - beta
 
 jobs:
   publish-latest:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - name: echo github ref
+        run: echo "${{github.ref}}"
       - name: Exit if not on main branch
         if: endsWith(github.ref, 'main') == false
         run: exit -1
