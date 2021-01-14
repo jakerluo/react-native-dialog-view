@@ -6,7 +6,7 @@ name: npm publish beta
 on:
   push:
     branches:
-      - beta
+      - test
 
 jobs:
   publish-beta:
