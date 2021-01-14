@@ -19,4 +19,6 @@ jobs:
         uses: Saionaro/extract-package-version@v1.0.6
       # From now you can access the version
       - name: Print version
-        run: echo ${{ contains(steps.extract_version.outputs.version, 'beta') }}
+        if: ${{contains(steps.extract_version.outputs.version, 'beta') == true}}
+        run: npm verion prerelease --preid=beta
+      
