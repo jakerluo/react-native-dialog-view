@@ -5,8 +5,8 @@ name: react-native-dialog-view beta Package
 
 on:
   push:
-    branches: 
-      - beta
+    tags-ignore: 
+      - v0.*.*
     tags: 
       - v*
 
