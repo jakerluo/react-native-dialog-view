@@ -14,25 +14,16 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         
-      - name: Check if version has been updated
-        id: check
-        uses: EndBug/version-check@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - run: echo ${{toJSON(steps.check.outputs)}}
-
+      - name: Extract version
+        id: extract_version
+        uses: Saionaro/extract-package-version@v1.0.6
+      - run: echo ${{toJson(steps.extract_version.outputs)}}
+        
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
           tag: beta
 
-      - name: Log when changed
-        if: steps.check.outputs.changed == 'true'
-        run: 'echo "Version change found in commit ${{ steps.check.outputs.commit }}! New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
 
-      - name: Log when unchanged
-        if: steps.check.outputs.changed == 'false'
-        run: 'echo "No version change :/"'
-    
       
 
