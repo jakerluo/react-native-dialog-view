@@ -15,7 +15,8 @@ public class ReactNativeDialogViewPackage implements ReactPackage {
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         return Arrays.<NativeModule>asList(
                 new ReactNativeDialogViewModule(reactContext),
-                new ReactNativeProgressModule(reactContext)
+                new ReactNativeProgressModule(reactContext),
+                new ReactNativeAlertModule(reactContext)
         );
     }
 
