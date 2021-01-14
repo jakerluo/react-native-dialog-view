@@ -1,7 +1,7 @@
 {
   "name": "react-native-dialog-view",
   "title": "React Native Dialog View",
-  "version": "1.0.0",
+  "version": "0.0.3",
   "description": "TODO",
   "main": "index.js",
   "files": [
@@ -14,16 +14,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/github_account/react-native-dialog-view.git",
-    "baseUrl": "https://github.com/github_account/react-native-dialog-view"
+    "url": "git+https://github.com/jakerluo/react-native-dialog-view.git",
+    "baseUrl": "https://github.com/jakerluo/react-native-dialog-view"
   },
   "keywords": [
     "react-native"
   ],
-  "author": {
-    "name": "Your Name",
-    "email": "yourname@email.com"
-  },
+  "author": "Robbe.Luo <robbe.luo@gmail.com>",
   "license": "MIT",
   "licenseFilename": "LICENSE",
   "readmeFilename": "README.md",
@@ -34,5 +31,12 @@
   "devDependencies": {
     "react": "^16.9.0",
     "react-native": "^0.61.5"
+  },
+  "bugs": {
+    "url": "https://github.com/jakerluo/react-native-dialog-view/issues"
+  },
+  "homepage": "https://github.com/jakerluo/react-native-dialog-view#readme",
+  "directories": {
+    "example": "example"
   }
 }
