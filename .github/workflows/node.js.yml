@@ -17,7 +17,8 @@ jobs:
       - name: Check if version has been updated
         id: check
         uses: EndBug/version-check@v1
-        
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - run: echo ${{steps.check.outputs.changed}}
         
       - name: should be publish package
