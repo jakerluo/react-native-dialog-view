@@ -4,9 +4,9 @@
 name: npm publish beta
 
 on:
-  push:
-    branches:
-      - test
+  create:
+    tags:
+      - v*
 
 jobs:
   publish-beta:
