@@ -3,7 +3,8 @@
   "title": "React Native Dialog View",
   "version": "0.1.2",
   "description": "TODO",
-  "main": "index.js",
+  "main": "index.ts",
+  "types": "index.d.ts",
   "files": [
     "README.md",
     "android",
