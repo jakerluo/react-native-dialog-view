@@ -4,12 +4,14 @@ export type DialogProgressShowOptions = {
   isCancelable?: boolean;
 };
 
-declare class DialogProgress {
-  show(
+declare namespace DialogProgress {
+  function show(
     dialogProgressShowOptions: DialogProgressShowOptions
   ): Promise<boolean | string>;
-  hide(): Promise<boolean>;
-  changeMessage(message: string): Promise<boolean>;
+
+  function hide(): Promise<boolean>;
+
+  function changeMessage(message: string): Promise<boolean>;
 }
 
 export { DialogProgress };
