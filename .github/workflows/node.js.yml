@@ -13,16 +13,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+        
       - name: Check if version has been updated
         id: check
         uses: EndBug/version-check@v1
-      - name: Log when changed
+        
+      - run: echo ${{steps.check.outputs.changed}}
+        
+      - name: should be publish package
         if: steps.check.outputs.changed == 'true'
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
           tag: beta
-      # From now you can access the version
 
       - name: Log when changed
         if: steps.check.outputs.changed == 'true'
