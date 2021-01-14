@@ -4,12 +4,9 @@
 name: react-native-dialog-view beta Package
 
 on:
-  push:
+  create:
     branches: 
       - beta
-  release:
-    # Only use the types keyword to narrow down the activity types that will trigger your workflow.
-    types: [created]
   
 jobs:
   publish-latest:
@@ -20,7 +17,7 @@ jobs:
         run: echo "${{github.ref}}"
       - name: Exit if not on main branch
         if: endsWith(github.ref, 'main') == false
-        run: exit -1
+        run: exit
       - uses: actions/setup-node@v1
         with:
           node-version: 12
