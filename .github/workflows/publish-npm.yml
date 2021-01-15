@@ -4,9 +4,7 @@
 name: npm publish beta
 
 on:
-  push:
-    branches: 
-      - test
+  create:
     tags:
       - v*
 
@@ -19,16 +17,10 @@ jobs:
       - name: Extract version
         id: extract_version
         uses: Saionaro/extract-package-version@v1.0.6
-      - run: echo ${{github.ref}}  
-      - run: echo ${{contains(steps.extract_version.outputs.version, 'beta')}}
-      - run: echo ${{contains(github.ref, 'beta') && contains(steps.extract_version.outputs.version, 'beta')}}
+        
       - name: publish package
-        if: ${{contains(steps.extract_version.outputs.version, 'beta') == true}}
+        if: ${{contains(github.ref, 'beta') && contains(steps.extract_version.outputs.version, 'beta')}}
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
           tag: beta
-
-
-      
-
