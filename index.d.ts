@@ -14,4 +14,8 @@ declare namespace DialogProgress {
   function changeMessage(message: string): Promise<boolean>;
 }
 
-export { DialogProgress };
+declare namespace DialogAlert {
+  function show(): Promise<boolean | string>;
+}
+
+export { DialogProgress, DialogAlert };
