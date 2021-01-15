@@ -21,7 +21,7 @@ jobs:
         uses: Saionaro/extract-package-version@v1.0.6
         
       - run: echo ${{contains(steps.extract_version.outputs.version, 'beta')}}
-      - run: echo ${{contains(github.ref, 'beta')}}
+      - run: echo ${{contains(github.ref, 'test')}}
       - name: publish package
         if: ${{contains(steps.extract_version.outputs.version, 'beta') == true}}
         uses: JS-DevTools/npm-publish@v1
