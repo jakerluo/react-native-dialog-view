@@ -10,7 +10,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 
 public class ReactNativeAlertModule extends ReactContextBaseJavaModule {
-    public static final String REACT_CLASS = "ReactNativeProgress";
+    public static final String REACT_CLASS = "ReactNativeAlert";
     private AlertDialog.Builder dialog;
 
     public ReactNativeAlertModule(ReactApplicationContext reactContext) {
