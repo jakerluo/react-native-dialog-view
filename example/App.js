@@ -23,8 +23,17 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
+import {DialogAlert} from 'react-native-dialog-view';
 const App: () => React$Node = () => {
+  DialogAlert.show({
+    title: '提示',
+    message: '确定要退出当前账号吗？',
+    width: 300,
+    cancelText: 'cancel',
+    cancelBack: () => {
+      console.log('cancel');
+    },
+  });
   return (
     <>
       <StatusBar barStyle="dark-content" />
