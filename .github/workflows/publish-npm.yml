@@ -4,7 +4,7 @@
 name: npm publish beta
 
 on:
-  create:
+  push:
     tags:
       - v*
 
@@ -13,11 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-        
+
       - name: Extract version
         id: extract_version
         uses: Saionaro/extract-package-version@v1.0.6
-        
+
       - name: publish package
         if: ${{contains(github.ref, 'beta') && contains(steps.extract_version.outputs.version, 'beta')}}
         uses: JS-DevTools/npm-publish@v1
