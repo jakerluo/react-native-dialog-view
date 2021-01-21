@@ -30,12 +30,11 @@ const App = () => {
     DialogAlert.show(
       {
         title: '提示',
-        // message: '确定要退出当前账号吗？',
-        width: 300,
+        message: '确定要退出当前账号吗？',
+        okText: '确定',
         cancelText: '取消',
-        okText: '确认',
         customTemplate: true,
-        // showInput: true,
+        showTitleIcon: true,
       },
       (second) => {
         console.log('确认', second);
@@ -48,20 +47,14 @@ const App = () => {
   const showDialogAlert2 = () => {
     DialogAlert.show(
       {
-        title: '提示',
-        // message: '确定要退出当前账号吗？',
-        width: 300,
+        title: '页面滚动速度设置',
+        okText: '确定',
         cancelText: '取消',
-        okText: '确认',
         customTemplate: true,
         showInput: true,
       },
-      (second) => {
-        console.log('确认', second);
-      },
-      (second) => {
-        console.log('取消', second);
-      },
+      () => {},
+      () => {},
     );
   };
   showDialogAlert2();

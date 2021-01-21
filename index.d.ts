@@ -15,7 +15,7 @@ export type DialogAlertShowOptions = {
   descText?: string;
   initialNum?: number;
   showInput?: boolean;
-  showTitleiIcon?: boolean;
+  showTitleIcon?: boolean;
   customTemplate?: boolean;
 };
 
