@@ -10,11 +10,18 @@ export type DialogAlertShowOptions = {
   cancelable?: boolean;
   cancelText?: string;
   okText?: string;
+  minusText?: string;
+  additionText?: string;
+  descText?: string;
+  initialNum?: number;
+  showInput?: boolean;
+  showTitleiIcon?: boolean;
+  customTemplate?: boolean;
 };
 
-export type ConfirmCallback = () => void;
+export type ConfirmCallback = (nums: number) => void;
 
-export type CancelCallback = () => void;
+export type CancelCallback = (nums: number) => void;
 
 declare namespace DialogProgress {
   function show(
@@ -32,6 +39,7 @@ declare namespace DialogAlert {
     confirmCallback: ConfirmCallback,
     cancelCallback: CancelCallback
   ): void;
+  function hide(): Promise<boolean>;
 }
 
 export { DialogProgress, DialogAlert };

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingVertical="20dp">
+
+    <LinearLayout
+        android:id="@+id/defaultTemplate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="确定要退出当前账号吗？"
+                android:textSize="20dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/customTemplate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingVertical="20dp">
+
+            <com.robbe.lib.TVButton
+                android:id="@+id/minus"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/radius"
+                android:elevation="0dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                android:text="一"
+                android:textColor="@color/design_default_color_surface" />
+
+            <EditText
+                android:id="@+id/editinput"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/border"
+                android:inputType="number"
+                android:paddingHorizontal="10dp" />
+
+            <TextView
+                android:id="@+id/descText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="s/页"
+                android:textColor="#999999" />
+
+            <com.robbe.lib.TVButton
+                android:id="@+id/addition"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/radius"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:onClick="addition"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                android:text="+"
+                android:textColor="@color/design_default_color_surface" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20px"
+            android:paddingVertical="20dp">
+
+            <com.robbe.lib.TVButton
+                android:id="@+id/okBtn"
+                style="@style/Theme.Button.Large"
+                android:background="@drawable/radius"
+                android:text="确定"
+                android:textColor="@color/design_default_color_surface" />
+
+            <com.robbe.lib.TVButton
+                android:id="@+id/cancel"
+                style="@style/Theme.Button.Large"
+                android:background="@drawable/border"
+                android:text="取消" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
