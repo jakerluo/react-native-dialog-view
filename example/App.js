@@ -14,6 +14,7 @@ import {
   View,
   Text,
   StatusBar,
+  Button,
 } from 'react-native';
 
 import {
@@ -25,21 +26,45 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import {DialogAlert} from 'react-native-dialog-view';
 const App = () => {
-  DialogAlert.show(
-    {
-      title: '提示',
-      message: '确定要退出当前账号吗？',
-      width: 300,
-      cancelText: '取消',
-      okText: '确认',
-    },
-    () => {
-      console.log('确认');
-    },
-    () => {
-      console.log('取消');
-    },
-  );
+  const showDialogAlert = () => {
+    DialogAlert.show(
+      {
+        title: '提示',
+        // message: '确定要退出当前账号吗？',
+        width: 300,
+        cancelText: '取消',
+        okText: '确认',
+        customTemplate: true,
+        // showInput: true,
+      },
+      (second) => {
+        console.log('确认', second);
+      },
+      (second) => {
+        console.log('取消', second);
+      },
+    );
+  };
+  const showDialogAlert2 = () => {
+    DialogAlert.show(
+      {
+        title: '提示',
+        // message: '确定要退出当前账号吗？',
+        width: 300,
+        cancelText: '取消',
+        okText: '确认',
+        customTemplate: true,
+        showInput: true,
+      },
+      (second) => {
+        console.log('确认', second);
+      },
+      (second) => {
+        console.log('取消', second);
+      },
+    );
+  };
+  showDialogAlert2();
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -61,6 +86,7 @@ const App = () => {
                 screen and then come back to see your edits.
               </Text>
             </View>
+            <Button title="show" onPress={showDialogAlert} />
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>See Your Changes</Text>
               <Text style={styles.sectionDescription}>
