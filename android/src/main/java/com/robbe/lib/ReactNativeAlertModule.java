@@ -72,8 +72,9 @@ public class ReactNativeAlertModule extends ReactContextBaseJavaModule {
     String additionText = readableMap.hasKey("additionText") ? readableMap.getString("additionText") : null;
     String descText = readableMap.hasKey("descText") ? readableMap.getString("descText") : null;
     Integer initialNum = readableMap.hasKey("initialNum") ? readableMap.getInt("initialNum") : null;
+    Integer width = readableMap.hasKey("width") ? readableMap.getInt("width") : null;
     boolean cancelable = readableMap.hasKey("cancelable") ? readableMap.getBoolean("cancelable") : true;
-    boolean showInput = readableMap.hasKey("showInput") ? readableMap.getBoolean("showInput") : false;
+    final boolean showInput = readableMap.hasKey("showInput") ? readableMap.getBoolean("showInput") : false;
     boolean showTitleIcon = readableMap.hasKey("showTitleIcon") ? readableMap.getBoolean("showTitleIcon") : false;
     final boolean customTemplate = readableMap.hasKey("customTemplate") ? readableMap.getBoolean("customTemplate") : false;
 
@@ -83,10 +84,6 @@ public class ReactNativeAlertModule extends ReactContextBaseJavaModule {
 
     if (this.mBuilder == null) {
       this.mBuilder = new AlertDialog.Builder(activity, R.style.ThemeOverlay_AppCompat_MaterialAlertDialog);
-
-      if (message != null) {
-        this.mBuilder.setMessage(message);
-      }
 
       if (title != null) {
         View view = View.inflate(activity, R.layout.diglog_alert_title, null);
@@ -150,10 +147,14 @@ public class ReactNativeAlertModule extends ReactContextBaseJavaModule {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-              if (Integer.parseInt(String.valueOf(charSequence)) > maxNum) {
-                mEditText.setText(String.valueOf(maxNum));
+              try {
+                if (Integer.parseInt(String.valueOf(charSequence)) > maxNum) {
+                  mEditText.setText(String.valueOf(maxNum));
+                }
+                second = Integer.parseInt(String.valueOf(mEditText.getText()), 10);
+              } catch (Exception e) {
+                second = 0;
               }
-              second = Integer.parseInt(String.valueOf(mEditText.getText()), 10);
             }
 
             @Override
@@ -200,7 +201,11 @@ public class ReactNativeAlertModule extends ReactContextBaseJavaModule {
           public void onClick(View view) {
 
             if (confirmCallback != null) {
-              confirmCallback.invoke(second);
+              if (showInput) {
+                confirmCallback.invoke(second);
+              } else {
+                confirmCallback.invoke();
+              }
             }
             mAlertDialog.dismiss();
             mAlertDialog = null;
@@ -216,7 +221,7 @@ public class ReactNativeAlertModule extends ReactContextBaseJavaModule {
           @Override
           public void onClick(View view) {
             if (cancelCallback != null) {
-              cancelCallback.invoke(second);
+              cancelCallback.invoke();
             }
             mAlertDialog.dismiss();
             mAlertDialog = null;
@@ -225,6 +230,10 @@ public class ReactNativeAlertModule extends ReactContextBaseJavaModule {
         });
 
         this.mBuilder.setView(mDialogAlertContent);
+      } else {
+        if (message != null) {
+          this.mBuilder.setMessage(message);
+        }
       }
       this.mBuilder.setCancelable(cancelable);
     }
@@ -262,20 +271,27 @@ public class ReactNativeAlertModule extends ReactContextBaseJavaModule {
     DisplayMetrics metrics = new DisplayMetrics();
 
     windowManager.getDefaultDisplay().getMetrics(metrics);
-    layoutParams.width = (int) (metrics.widthPixels * 0.4);
+    if (width == null) {
+      layoutParams.width = (int) (metrics.widthPixels * 0.5);
+    } else {
+      layoutParams.width = width;
+    }
 
     dialogWindow.setAttributes(layoutParams);
   }
 
-  private boolean checkSecond() {
-    if (this.maxNum > this.second) {
+  private boolean checkSecond(boolean addition) {
+    if (addition && this.maxNum > this.second) {
+      return true;
+    }
+    if (!addition && this.second > 0) {
       return true;
     }
     return false;
   }
 
   private void addition(boolean addition) {
-    boolean checkSecond = this.checkSecond();
+    boolean checkSecond = this.checkSecond(addition);
     if (!checkSecond) {
       return;
     }
