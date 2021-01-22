@@ -1,4 +1,4 @@
-name: npm publish latest
+name: npm publish
 
 on:
   create:
@@ -6,6 +6,25 @@ on:
       - v*
 
 jobs:
+  publish-latest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Extract version
+        id: extract_version
+        uses: Saionaro/extract-package-version@v1.0.6
+      
+      - name: is main branch
+        run: echo ${{contains(github.ref, 'beta') == false && contains(steps.extract_version.outputs.version, 'beta') == false}}
+        
+      - name: publish package
+        if: ${{contains(github.ref, 'beta') == false && contains(steps.extract_version.outputs.version, 'beta') == false}}
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          tag: latest
+
   publish-beta:
     runs-on: ubuntu-latest
     steps:
@@ -14,20 +33,13 @@ jobs:
       - name: Extract version
         id: extract_version
         uses: Saionaro/extract-package-version@v1.0.6
-      - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
-        
-      - name: is main branch
-        run: echo ${{github.ref}} ${{steps.extract_version.outputs.version}} ${{steps.extract_branch.outputs.branch}}
-        
-      - name: is main branch
-        run: echo ${{contains(github.ref, 'main') && contains(steps.extract_version.outputs.version, 'main')}}
+
+      - name: is beta branch
+        run: echo ${{contains(github.ref, 'beta') == true && contains(steps.extract_version.outputs.version, 'beta') == true}}
         
       - name: publish package
-        if: ${{contains(github.ref, 'main') && contains(steps.extract_version.outputs.version, 'main')}}
+        if: ${{contains(github.ref, 'beta') == true && contains(steps.extract_version.outputs.version, 'beta') == true}}
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
-          tag: latest
+          tag: beta
