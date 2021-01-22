@@ -1,7 +1,7 @@
 name: npm publish latest
 
 on:
-  push:
+  create:
     tags:
       - v*
 
