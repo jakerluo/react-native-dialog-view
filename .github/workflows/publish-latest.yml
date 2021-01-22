@@ -14,9 +14,13 @@ jobs:
       - name: Extract version
         id: extract_version
         uses: Saionaro/extract-package-version@v1.0.6
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
         
       - name: is main branch
-        run: echo ${{github.ref}} ${{steps.extract_version.outputs.version}}
+        run: echo ${{github.ref}} ${{steps.extract_version.outputs.version}} ${{steps.extract_branch.outputs.branch}}
         
       - name: is main branch
         run: echo ${{contains(github.ref, 'main') && contains(steps.extract_version.outputs.version, 'main')}}
