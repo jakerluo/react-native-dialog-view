@@ -16,6 +16,9 @@ jobs:
         uses: Saionaro/extract-package-version@v1.0.6
         
       - name: is main branch
+        run: echo ${{github.ref}} ${{steps.extract_version.outputs.version}}
+        
+      - name: is main branch
         run: echo ${{contains(github.ref, 'main') && contains(steps.extract_version.outputs.version, 'main')}}
         
       - name: publish package
