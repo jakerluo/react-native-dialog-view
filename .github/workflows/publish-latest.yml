@@ -14,7 +14,10 @@ jobs:
       - name: Extract version
         id: extract_version
         uses: Saionaro/extract-package-version@v1.0.6
-
+        
+      - name: is main branch
+        run: echo ${{contains(github.ref, 'main') && contains(steps.extract_version.outputs.version, 'main')}}
+        
       - name: publish package
         if: ${{contains(github.ref, 'main') && contains(steps.extract_version.outputs.version, 'main')}}
         uses: JS-DevTools/npm-publish@v1
