@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ThemeOverlay.AppCompat.MaterialAlertDialog" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="colorPrimary">#02B980</item>
+        <item name="android:background">#fafafa</item>
+    </style>
+
+    <style name="Theme.Button.Large" parent="Theme.Button">
+        <item name="android:layout_width">160dp</item>
+        <item name="android:layout_height">70dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textSize">24dp</item>
+    </style>
+
+    <style name="Theme.Button" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#02B980</item>
+        <item name="android:scaleX">0.8</item>
+        <item name="android:scaleY">0.8</item>
+        <item name="borderlessButtonStyle">?android:attr/borderlessButtonStyle</item>
+    </style>
+</resources>
