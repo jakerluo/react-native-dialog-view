@@ -2,6 +2,8 @@ export type DialogProgressShowOptions = {
   title?: string;
   message?: string;
   isCancelable?: boolean;
+  type?: "progress";
+  max?: number;
 };
 
 export type DialogAlertShowOptions = {
@@ -31,6 +33,7 @@ declare namespace DialogProgress {
   function hide(): Promise<boolean>;
 
   function changeMessage(message: string): Promise<boolean>;
+  function changeProgress(pregress: number): Promise<boolean>;
 }
 
 declare namespace DialogAlert {
