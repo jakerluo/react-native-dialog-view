@@ -18,11 +18,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
+
+import javax.annotation.Nullable;
 
 
 public class ReactNativeAlertModule extends ReactContextBaseJavaModule {
@@ -36,6 +39,28 @@ public class ReactNativeAlertModule extends ReactContextBaseJavaModule {
 
   public ReactNativeAlertModule(ReactApplicationContext reactContext) {
     super(reactContext);
+    reactContext.addLifecycleEventListener(new LifecycleEventListener() {
+      @Override
+      public void onHostResume() {
+
+      }
+
+      @Override
+      public void onHostPause() {
+        if (mAlertDialog != null) {
+          if (mAlertDialog.isShowing()) {
+            mAlertDialog.dismiss();
+          }
+          mAlertDialog = null;
+          mBuilder = null;
+        }
+      }
+
+      @Override
+      public void onHostDestroy() {
+
+      }
+    });
   }
 
   @Override
@@ -62,7 +87,7 @@ public class ReactNativeAlertModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void show(ReadableMap readableMap, final Callback confirmCallback, final Callback cancelCallback) {
+  public void show(ReadableMap readableMap, @Nullable final Callback confirmCallback, @Nullable final Callback cancelCallback) {
     Activity activity = this.getCurrentActivity();
     String title = readableMap.hasKey("title") ? readableMap.getString("title") : null;
     String message = readableMap.hasKey("message") ? readableMap.getString("message") : null;
